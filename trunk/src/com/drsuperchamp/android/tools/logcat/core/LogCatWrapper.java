@@ -41,6 +41,10 @@ public class LogCatWrapper {
     private String mDevSerialNumber = null;
     private LogCatOutputReceiver mReceiver = null;
 
+    /**
+     * @param devSerialNumber
+     * @param maxLogsToManage
+     */
     public LogCatWrapper(String devSerialNumber, int maxLogsToManage) {
         STRING_BUFFER_LENGTH = maxLogsToManage;
         mBuffer = new LogMessage[STRING_BUFFER_LENGTH];
@@ -60,14 +64,28 @@ public class LogCatWrapper {
         mReceiver = new LogCatOutputReceiver();
     }
 
+    /**
+     * @param outputInterface
+     */
     public void setDefaultFilterOutput(FilterOutput outputInterface) {
         mDefaultFilter.setOutput(outputInterface);
     }
 
+    /**
+     * @return
+     */
     public ShellOutputReceiver getShellOutputReceiver() {
         return mReceiver;
     }
 
+    /**
+     * @param filterName
+     * @param tag
+     * @param pid
+     * @param logLevel
+     * @param colors
+     * @param outInterface
+     */
     public void addFilter(String filterName, String tag, String pid, String logLevel,
             LogColors colors, FilterOutput outInterface) {
         LogFilter newFilter = new LogFilter(filterName);
@@ -254,7 +272,7 @@ public class LogCatWrapper {
         public String time;
     }
 
-    public class Color {
+    public static class Color {
         int r;
         int g;
         int b;
@@ -265,7 +283,7 @@ public class LogCatWrapper {
         }
     }
 
-    public class LogColors {
+    public static class LogColors {
         public Color infoColor;
         public Color debugColor;
         public Color errorColor;
