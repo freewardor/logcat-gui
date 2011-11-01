@@ -59,6 +59,10 @@ public class AdbWrapper {
     private AdbWrapper() {
     }
 
+    /**
+     * Get a singleton instance.
+     * @return singleton instance of AdbWrapper
+     */
     public static synchronized AdbWrapper getInstance() {
         if (sSingletonInstance == null) {
             sSingletonInstance = new AdbWrapper();
@@ -79,6 +83,12 @@ public class AdbWrapper {
         return false;
     }
 
+    /**
+     * 
+     * @param adbFilePath
+     * @param listener
+     * @return
+     */
     public boolean connect(String adbFilePath, DeviceConnectionListener listener) {
         if (!checkPath(adbFilePath)) {
             Util.DbgLog("Error occured in setting adb binary file path");
@@ -100,6 +110,9 @@ public class AdbWrapper {
         return true;
     }
 
+    /**
+     * 
+     */
     public void disconnect() {
         if (!mIsAdbInitialized) {
             Util.DbgLog("not connected..");
@@ -109,6 +122,9 @@ public class AdbWrapper {
         AndroidDebugBridge.disconnectBridge();
     }
 
+    /**
+     * @return
+     */
     public String[] getConnectedDevices() {
         String[] serialNums;
         synchronized(mConnectedDevices) {
@@ -121,6 +137,12 @@ public class AdbWrapper {
         return serialNums;
     }
 
+    /**
+     * @param devSerialNumber
+     * @param shellCmd
+     * @param receiver
+     * @return
+     */
     public boolean executeShellCommand(String devSerialNumber, String shellCmd, ShellOutputReceiver receiver) {
         IDevice device;
         if ((device = findDevice(devSerialNumber)) == null)

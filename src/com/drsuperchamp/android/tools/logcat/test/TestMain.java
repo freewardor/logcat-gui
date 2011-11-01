@@ -65,7 +65,7 @@ public class TestMain implements DeviceConnectionListener {
             String msg;
             int loop_end = newMessages.length;
             for(int n=0; n < loop_end; n++) {
-                msg = String.format("%s: %s", filterName, newMessages[n].data.tag ,newMessages[n].msg);
+                msg = String.format("%s: [%s] %s", filterName, newMessages[n].data.tag ,newMessages[n].msg);
                 System.out.println(msg);
             }
         }
@@ -78,3 +78,4 @@ public class TestMain implements DeviceConnectionListener {
         TestMain tm = new TestMain();
     }
 }
+
