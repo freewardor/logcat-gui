@@ -112,10 +112,6 @@ public class MainFrame extends JFrame implements DeviceConnectionListener {
         LogTable defaultTable = new LogTable(DEFAULT_TABLE_NAME);
         mTables.add(defaultTable);
 
-        LogTable micomTable = new LogTable("Micom");
-        micomTable.setFilterValue("micom", null, "V");
-        mTables.add(micomTable);
-
         ADB_BIN_PATH = adb_bin_path;
         mAdb = AdbWrapper.getInstance();
         mAdb.connect(ADB_BIN_PATH, this);
